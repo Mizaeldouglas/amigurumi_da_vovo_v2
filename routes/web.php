@@ -18,22 +18,23 @@ use App\Http\Controllers\ProductController;
 */
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/produtos', [ProductController::class,'create'])->name('product.create');
-Route::get('/produtos', [ProductController::class,'index'])->name('product.index');
-Route::any('/teste', [ProductController::class, 'teste']);
+Route::post('/produtos', [ProductController::class, 'create'])->name('product.create');
+Route::get('/produtos', [ProductController::class, 'index'])->name('product.index');
 
-Route::get('/', [HomeController::class, 'index' ])->name('home.index');
-Route::get('/sobre', [HomeController::class, 'about' ])->name('home.about');
-Route::get('/dashboard', [HomeController::class, 'dashboard_home'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::any('/teste', [ProductController::class, 'teste'])->name('test');
+
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/sobre', [HomeController::class, 'about'])->name('home.about');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'dashboard_home'])->name('dashboard');
+});
 
 Route::get('/contact', [FormController::class, 'index'])->name('contact.index');
 
-Route::get('/todos-amigurumis', [ProductController::class , 'index'])->name('product.index');
-
-require __DIR__ . '/auth.php';
