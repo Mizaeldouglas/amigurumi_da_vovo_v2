@@ -74,7 +74,7 @@
     </div>
 </header>
 <!-- End Header -->
-{{$slug ?? ''}}
+
 </body>
 <script>
     // Obtém o URL atual

@@ -1,3 +1,3 @@
-{{--<x-navbar />--}}
-{{--{{$slot}}--}}
-{{--<x-footer />--}}
+<x-navbar />
+@yield('content')
+<x-footer />
