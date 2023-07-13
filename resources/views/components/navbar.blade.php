@@ -30,7 +30,6 @@
     <meta name="twitter:image" content="http://tailwindcomponents.com/storage/9593/conversions/temp68543-ogimage.jpg?v=2023-06-28 12:35:54" />
 
 
-    <script src="https://cdn.tailwindcss.com/"></script>
 
 
     <!-- Favicons -->
@@ -49,7 +48,7 @@
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
-
+    @vite('resources/css/app.css')
 </head>
 <body>
 

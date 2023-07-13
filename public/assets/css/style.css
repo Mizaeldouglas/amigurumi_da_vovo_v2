@@ -9,6 +9,9 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   font-family: "Open Sans", sans-serif;
