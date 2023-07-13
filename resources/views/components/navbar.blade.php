@@ -30,7 +30,8 @@
     <meta name="twitter:image" content="http://tailwindcomponents.com/storage/9593/conversions/temp68543-ogimage.jpg?v=2023-06-28 12:35:54" />
 
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com/"></script>
+
 
     <!-- Favicons -->
     {{--    <link href="assets/img/favicon.png" rel="icon">--}}
@@ -48,6 +49,7 @@
     <link href="{{asset('assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+
 </head>
 <body>
 
