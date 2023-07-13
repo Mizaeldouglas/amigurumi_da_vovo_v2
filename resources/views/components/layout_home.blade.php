@@ -1,3 +1,3 @@
 <x-navbar />
-@yield('content')
+{{$slot}}
 <x-footer />
