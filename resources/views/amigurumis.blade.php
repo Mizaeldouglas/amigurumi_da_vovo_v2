@@ -8,10 +8,10 @@
                 @foreach ($produtos as $produto)
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                         <div class="portfolio-wrap">
-                            <img src="{{ Storage::url($produto->imagem) }}" class="img-fluid img-portfolio" alt="">
+                            <img src="{{  $produto->imagem }}" class="img-fluid img-portfolio" alt="">
                             <div class="portfolio-links">
-                                <a href="{{ Storage::url($produto->imagem) }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ $produto->nome }}"><i class="bi bi-plus"></i></a>
-                                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+                                <a href="{{ $produto->imagem }}"  data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ $produto->nome }}"><i class="bi bi-plus"></i></a>
+                                <a href="{{$produto->link}}" target="_blank" title="More Details"><i class="bi bi-link"></i></a>
                             </div>
                             <div class="portfolio-info">
                                 <h4>{{ $produto->nome }}</h4>

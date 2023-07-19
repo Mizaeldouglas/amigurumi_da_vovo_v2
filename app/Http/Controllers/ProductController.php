@@ -15,15 +15,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $produtos = Product::all();
+        $produtos = Product::latest('created_at')->get();
 
         return view('amigurumis', compact('produtos'));
     }
 
-    public function teste()
-    {
-        return view('imagem_teste');
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -32,37 +29,17 @@ class ProductController extends Controller
     {
         $request->validate([
             'nome' => 'required',
-            'imagem' => [
-                'required',
-                'image',
-                'max:8192', // Limite de tamanho de upload de 8MB
-            ],
+            'imagem' => 'required',
             'descricao' => 'required',
             'link' => 'required',
         ]);
 
-        if ($request->hasFile('imagem')) {
-            $imagem = $request->file('imagem');
-            $nomeArquivo = $imagem->getClientOriginalName();
-
-            // Redimensionar a imagem para 1.5MB
-            $imagemRedimensionada = Image::make($imagem)->resize(800, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })->encode('jpg', 75);
-
-            $nomeArquivoRedimensionado = 'redimensionado_'.$nomeArquivo;
-
-            // Salvar a imagem redimensionada no diretório de armazenamento (pasta storage/app/public)
-            Storage::put('public/'.$nomeArquivoRedimensionado, $imagemRedimensionada);
-
-            $produto = new Product;
-            $produto->nome = $request->input('nome');
-            $produto->imagem = $nomeArquivoRedimensionado;
-            $produto->descricao = $request->input('descricao');
-            $produto->link = $request->input('link');
-            $produto->save();
-        }
+        $produto = new Product;
+        $produto->nome = $request->input('nome');
+        $produto->imagem = $request->input('imagem');
+        $produto->descricao = $request->input('descricao');
+        $produto->link = $request->input('link');
+        $produto->save();
 
         return redirect()->back()->with('success', 'Produto criado com sucesso.');
     }

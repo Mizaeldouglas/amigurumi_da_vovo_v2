@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -10,19 +11,21 @@ class HomeController extends Controller
 
     public function dashboard_home()
     {
-        return view('dashboard');
+        return view('dashboard.index');
     }
 
     public function about()
     {
         return view('about');
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('home');
+        $produtos = Product::latest('created_at')->take(6)->get();
+        return view('home', compact('produtos'));
     }
 
     /**
