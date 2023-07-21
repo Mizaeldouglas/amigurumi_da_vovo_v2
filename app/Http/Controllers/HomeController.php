@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdicionarDados;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,65 +15,33 @@ class HomeController extends Controller
         return view('dashboard.index');
     }
 
-    public function about()
+    public function dashboard_edit()
     {
-        return view('about');
+        return view('dashboard.edit');
     }
 
-    /**
-     * Display a listing of the resource.
-     */
+
+    public function about()
+    {
+        $socialMedia = AdicionarDados::all();
+        $socialMedia = $socialMedia->sortByDesc('created_at');
+        return view('about', compact('socialMedia'));
+    }
+
+    public function footer()
+    {
+        $socialMedia = AdicionarDados::all();
+        $socialMedia = $socialMedia->sortByDesc('created_at');
+
+
+
+        return view('components.footer', compact('socialMedia'));
+    }
+
     public function index()
     {
         $produtos = Product::latest('created_at')->take(6)->get();
-        return view('home', compact('produtos'));
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('home', compact('produtos',));
     }
 }

@@ -1,4 +1,5 @@
-<!-- ======= Footer ======= -->
+<x-navbar class="hidden"/>
+
 <footer id="footer">
     <div class="footer-top">
         <div class="container">
@@ -6,51 +7,70 @@
 
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <h3>Amigurumi da Vovó</h3>
-                    <p>
-                        Dona Asme Abdale Salibe nº 57 <br>
-                        Limeira - Sp, 13458-210 <br>
-                        Brasil <br><br>
-                        <strong>Telefone:</strong> +55 (19) 99999-9999<br>
-                        <strong>Email:</strong> email@email.com<br>
-                    </p>
+                    @foreach ($enderecos as $endereco)
+                        <p>
+                            {{mb_convert_case($endereco->bairro,MB_CASE_TITLE)}}, <br>
+                            {{mb_convert_case($endereco->logradouro,MB_CASE_TITLE)}} nº {{ $endereco->numero  }}, <br>
+                            {{ mb_convert_case($endereco->endereco,MB_CASE_TITLE)  }} SP - {{strtolower($endereco->cep)}} <br>
+                            <br>
+                            <strong>Telefone:</strong> {{strtoupper($endereco->telefone)}}<br>
+                            <strong>Email:</strong> {{strtolower($endereco->email)}}<br>
+                        </p>
+                    @endforeach
                 </div>
 
-                <div class="col-lg-3 col-md-6 footer-links">
+                <div class="col-lg-3 col-md-6 footer-links ">
                     <h4>Links Úteis</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre Mim</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('home.index') }}">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('home.about') }}">Sobre Mim</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('contact.index') }}">Contato</a>
+                        </li>
+
                     </ul>
                 </div>
-
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Nossas Redes Sociais</h4>
-                    <p>Conheça o mundo encantado dos amigurumis da Vovó e mergulhe em um universo de ternura e diversão! Siga-nos nas redes sociais e fique por dentro das novidades e lançamentos!</p>
-                    <div class="social-links mt-3">
-                        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    <p>Conheça o mundo encantado dos amigurumis da Vovó e mergulhe em um universo de ternura e
+                        diversão! Siga-nos nas redes sociais e fique por dentro das novidades e lançamentos!</p>
+                    <div class="mt-3 social-links">
+                        @foreach ($socialMedia as $social)
+                            @if($social->instagram)
+                                <a href="{{ $social->instagram }}" target="_blank" class="instagram"><i
+                                        class="bx bxl-instagram"></i></a>
+                            @endif
+                            @if($social->whatsapp)
+                                <a href="{{ $social->whatsapp }}" target="_blank" class="whatsapp"><i
+                                        class="bx bxl-whatsapp"></i></a>
+                            @endif
+                            @if($social->linkedin)
+                                <a href="{{ $social->linkedin }}" target="_blank" class="linkedin"><i
+                                        class="bx bxl-linkedin"></i></a>
+                            @endif
+                            @if($social->github)
+                                <a href="{{ $social->github }}" target="_blank" class="github"><i
+                                        class="bx bxl-github"></i></a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container py-4">
+    <div class="container pt-4 flex justify-center align-items-center">
         <div class="copyright">
-            &copy; Copyright <strong><span>MizaelDouglas</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span><a href="https://www.linkedin.com/in/mizaeldouglas/"
+                                              target="_blank">MizaelDouglas</a></span></strong>.
+            All Rights Reserved
         </div>
 
     </div>
 </footer>
-<!-- End Footer -->
 
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>

@@ -1,4 +1,4 @@
-<x-layout_home>
+<x-layout_home >
     <x-header_hero/>
     <!-- Start #main -->
     <main id="main">
@@ -31,7 +31,11 @@
                 </div>
             </div>
         </section><!-- End Portfolio Section -->
+        <div class="section-title">
+            <p><a href="{{route('product.index')}}" >Ver Todos amigurimis...</a></p>
+        </div>
 
     </main>
     <!-- End #main -->
+
 </x-layout_home>

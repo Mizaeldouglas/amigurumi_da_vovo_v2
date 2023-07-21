@@ -1,3 +1,5 @@
 <x-navbar />
-{{$slot}}
-<x-footer />
+
+{{ $slot }}
+
+<x-footer :socialMedia="$socialMedia" :enderecos="$enderecos" />
