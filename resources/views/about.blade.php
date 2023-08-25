@@ -7,7 +7,7 @@
                 <p class="text-center text-gray-600 mt-1">Crocheteira</p>
 
 
-                    @foreach($socialMedia as $social)
+                @foreach($socialMedia as $social)
                     <div class="flex justify-center mt-5">
                         @if (!empty($social->instagram))
                             <a href="{{ $social->instagram }}" target="_blank" class="text-rose-500 hover:text-rose-700 mx-2">Instagram</a>
@@ -37,9 +37,9 @@
                 @endforeach
 
                 <div class="mt-5">
-                    <h3 class="text-xl font-semibold">Bio</h3>
+                    <h3 class="text-xl font-semibold">Sobre mim</h3>
                     <p class="text-gray-600 mt-2">
-                        Bem-vindo(a) ao mundo encantado dos Amigurumis da Vovó! Me chamo [Nome da Vovó] e sou uma apaixonada por criar essas adoráveis criaturas de crochê. Minha jornada começou há [X] anos, quando descobri a arte dos Amigurumis e me apaixonei por cada ponto e detalhe.
+                        Bem-vindo(a) ao mundo encantado dos Amigurumis da Vovó! Me chamo Roseleia Peramos Carneiro e sou uma apaixonada por criar essas adoráveis criaturas de crochê. Minha jornada começou há alguns anos, quando descobri a arte dos Amigurumis e me apaixonei por cada ponto e detalhe.
                         Aqui, no Amigurumi da Vovó, você encontrará uma variedade de Amigurumis feitos com muito amor e carinho. Cada peça é única e confeccionada à mão, com materiais de alta qualidade.
                         Estou sempre buscando novas inspirações e aprimorando minhas habilidades para trazer Amigurumis cada vez mais encantadores. Espero que você se divirta explorando minha coleção e encontre o seu Amigurumi perfeito!
 

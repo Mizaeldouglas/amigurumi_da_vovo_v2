@@ -1,10 +1,15 @@
+
 <x-app-layout >
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
     <script src="assets/js/color-modes.js"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .bd-placeholder-img {
-            font-size: 1.125rem;
+    font-size: 1.125rem;
             text-anchor: middle;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -12,14 +17,14 @@
         }
 
         @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
             }
         }
 
         .b-example-divider {
-            width: 100%;
-            height: 3rem;
+    width: 100%;
+    height: 3rem;
             background-color: rgba(0, 0, 0, .1);
             border: solid rgba(0, 0, 0, .15);
             border-width: 1px 0;
@@ -27,26 +32,26 @@
         }
 
         .b-example-vr {
-            flex-shrink: 0;
+    flex-shrink: 0;
             width: 1.5rem;
             height: 100vh;
         }
 
         .bi {
-            vertical-align: -.125em;
+    vertical-align: -.125em;
             fill: currentColor;
         }
 
         .nav-scroller {
-            position: relative;
-            z-index: 2;
+    position: relative;
+    z-index: 2;
             height: 2.75rem;
             overflow-y: hidden;
         }
 
         .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
             padding-bottom: 1rem;
             margin-top: -1px;
             overflow-x: auto;
@@ -56,7 +61,7 @@
         }
 
         .btn-bd-primary {
-            --bd-violet-bg: #712cf9;
+    --bd-violet-bg: #712cf9;
             --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
 
             --bs-btn-font-weight: 600;
@@ -73,16 +78,16 @@
         }
 
         .bd-mode-toggle {
-            z-index: 1500;
+    z-index: 1500;
         }
         .centered-container {
-            display: flex;
-            justify-content: center;
+    display: flex;
+    justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 90vh;
         }
         .custom-width {
-            width: 800px;
+    width: 500px;
             margin: 0 auto; /* Isso irá centralizar o componente horizontalmente */
         }
     </style>
@@ -94,10 +99,10 @@
     <link href="{{asset('assets/css/dashboard.css')}}" rel="stylesheet">
     </head>
     <body>
-    <div class="container-fluid centered-container">
+    <div class="container-fluid centered-container  h-screen pt-14 ">
         <div class="row">
-            <main class="col-xl-12 custom-width h-screen pt-14">
-                <x-adicionarAmigurmis/>
+            <main class="col-xl-12">
+                <x-adicionarEndereco/>
             </main>
         </div>
     </div>
@@ -107,5 +112,29 @@
             integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG"
             crossorigin="anonymous"></script>
     <script src="{{asset('assets/js/dashboard.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#cep").blur(function () {
+                var cep = $(this).val().replace(/\D/g, '');
+                if (cep != "") {
+                    var validacep = /^[0-9]{8}$/;
+                    if (validacep.test(cep)) {
+                        $("#logradouro").val("");
+                        $("#bairro").val("");
+                        $("#endereco").val("");
+                        $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+                            if (!("erro" in dados)) {
+                                $("#logradouro").val(dados.logradouro.toUpperCase());
+                                $("#bairro").val(dados.bairro.toUpperCase());
+                                $("#endereco").val(dados.localidade.toUpperCase());
+                            } else {
+                                alert("CEP não encontrado de forma automatizada. Digite manualmente ou tente novamente.");
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
     </body>
 </x-app-layout>

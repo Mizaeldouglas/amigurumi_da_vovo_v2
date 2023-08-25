@@ -20,6 +20,13 @@ class ProductController extends Controller
         return view('amigurumis', compact('produtos'));
     }
 
+    public function detalhes ($id)
+    {
+        $produto = Product::find($id);
+
+        return view('portfolio-details',compact('produto'));
+    }
+
 
 
     /**
@@ -29,16 +36,25 @@ class ProductController extends Controller
     {
         $request->validate([
             'nome' => 'required',
-            'imagem' => 'required',
+            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ajuste os formatos e o tamanho permitidos conforme necessário
             'descricao' => 'required',
             'link' => 'required',
         ]);
 
         $produto = new Product;
         $produto->nome = $request->input('nome');
-        $produto->imagem = $request->input('imagem');
         $produto->descricao = $request->input('descricao');
         $produto->link = $request->input('link');
+        $produto->largura = $request->input('largura');
+        $produto->altura = $request->input('altura');
+        $produto->peso = $request->input('peso');
+
+        // Fazer upload e salvar a imagem
+        if ($request->hasFile('imagem')) {
+            $caminhoImagem = $request->file('imagem')->store('product_images', 'public');
+            $produto->imagem = $caminhoImagem;
+        }
+
         $produto->save();
 
         return redirect()->back()->with('success', 'Produto criado com sucesso.');

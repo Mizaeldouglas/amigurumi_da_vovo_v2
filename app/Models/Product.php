@@ -13,5 +13,8 @@ class Product extends Model
         'imagem',
         'descricao',
         'link',
+        'altura',
+        'largura',
+        'peso',
     ];
 }

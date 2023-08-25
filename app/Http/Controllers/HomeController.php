@@ -20,6 +20,11 @@ class HomeController extends Controller
         return view('dashboard.edit');
     }
 
+    public function dashboard_endereco()
+    {
+        return view('dashboard.endereco');
+    }
+
 
     public function about()
     {

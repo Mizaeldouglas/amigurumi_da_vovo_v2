@@ -5,6 +5,22 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+var currentUrl = window.location.href;
+
+// Obtém todos os links de navegação
+var navLinks = document.querySelectorAll('#navbar ul li a');
+
+// Percorre cada link de navegação
+navLinks.forEach(function (link) {
+    // Verifica se o link corresponde ao URL atual
+    if (link.href === currentUrl) {
+        // Adiciona a classe .active ao link correspondente
+        link.classList.add('active');
+    }
+});
+
+
 (function() {
   "use strict";
 
@@ -35,7 +51,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -171,7 +187,7 @@
   });
 
   /**
-   * Initiate portfolio lightbox 
+   * Initiate portfolio lightbox
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'

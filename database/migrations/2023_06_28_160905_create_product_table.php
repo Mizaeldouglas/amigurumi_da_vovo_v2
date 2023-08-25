@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('imagem');
-            $table->text('descricao');
+            $table->longText('descricao');
             $table->string('link');
+            $table->string('altura')->nullable();
+            $table->string('largura')->nullable();
+            $table->string('peso')->nullable();
             $table->timestamps();
         });
     }

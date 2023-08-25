@@ -97,9 +97,9 @@
     <link href="{{asset('assets/css/dashboard.css')}}" rel="stylesheet">
     </head>
     <body>
-    <div class="container-fluid centered-container ">
+    <div class="container-fluid centered-container  h-screen pt-14 ">
         <div class="row">
-            <main class="col-xl-12 p-2 ">
+            <main class="col-xl-12">
                 <x-adicionarDados/>
             </main>
         </div>

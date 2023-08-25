@@ -12,9 +12,15 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard_edit')" :active="request()->routeIs('dashboard_edit')">
-                        {{ __('Adicionar dados 👵🏼') }}
+                        {{ __('Adicionar Redes sociais 👵🏼') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard_endereco')" :active="request()->routeIs('dashboard_endereco')">
+                        {{ __('Adicionar Endereços 👵🏼') }}
+                    </x-nav-link>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->
